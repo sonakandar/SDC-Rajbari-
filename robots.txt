@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://sonakandar.github.io/SDC-Rajbari/sitemap.xml

@@ -1,0 +1,23 @@
+# Sonakandor Development Club (SDC) Rajbari
+
+> Official website of Sonakandor Development Club (SDC), Rajbari, Bangladesh.
+
+## About
+
+SDC is a voluntary social organization focused on education, youth development, social welfare, and scholarship activities.
+
+## Website
+
+- Official site: https://sonakandar.github.io/SDC-Rajbari/
+- Facebook: https://www.facebook.com/profile.php?id=100068807261008
+
+## Main sections
+
+- About
+- Leadership
+- Focus areas
+- Projects
+- News
+- Notices
+- Activity Gallery
+- Contact
