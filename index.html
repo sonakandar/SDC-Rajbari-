@@ -163,6 +163,14 @@ body.notice-mode{background:var(--paper)}
 .news-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:28px}.news-card{position:relative;padding:26px;border:1px solid rgba(201,163,72,.22);border-radius:18px;background:linear-gradient(145deg,rgba(255,255,255,.045),rgba(255,255,255,.018));box-shadow:0 14px 38px rgba(0,0,0,.12);transition:transform .25s ease,border-color .25s ease}.news-card:hover{transform:translateY(-5px);border-color:rgba(201,163,72,.55)}.news-meta{display:flex;gap:9px;align-items:center;flex-wrap:wrap;margin-bottom:14px;font-size:12px;color:#c9a348;font-weight:700;letter-spacing:.04em}.news-meta .source{padding:5px 9px;border:1px solid rgba(201,163,72,.28);border-radius:999px}.news-card h3{font-size:20px;line-height:1.45;margin:0 0 11px}.news-card p{font-size:14px;line-height:1.85;opacity:.82;margin:0 0 18px}.news-link{display:inline-flex;align-items:center;gap:7px;color:#c9a348;font-weight:800;text-decoration:none}.news-note{margin-top:18px;font-size:12px;opacity:.62}.news-verified{display:inline-flex;align-items:center;gap:5px;color:#8fd3a8;font-size:11px;font-weight:700}.news-verified::before{content:'✓'}
 @media(max-width:900px){.news-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:600px){.news-grid{grid-template-columns:1fr}.news-card{padding:21px}.news-card h3{font-size:18px}}
+/* Keep the news section compact until visitors choose to see more. */
+.news-grid .news-card:nth-child(n+5){display:none}
+.news-grid.show-all .news-card{display:block}
+.news-more-wrap{display:flex;justify-content:center;margin:28px 0 8px}
+.news-more-btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-width:170px;padding:12px 24px;border:1px solid rgba(201,163,72,.65);border-radius:999px;background:#c9a348;color:#101827;font:inherit;font-size:14px;font-weight:800;cursor:pointer;transition:transform .2s ease,background .2s ease,box-shadow .2s ease;box-shadow:0 8px 22px rgba(0,0,0,.15)}
+.news-more-btn:hover{transform:translateY(-2px);background:#e0b954;box-shadow:0 12px 26px rgba(0,0,0,.22)}
+.news-more-btn:focus-visible{outline:3px solid #fff;outline-offset:3px}
+.news-more-btn .news-more-icon{font-size:18px;line-height:1}
 </style>
 </head>
 <body>
@@ -213,7 +221,19 @@ body.notice-mode{background:var(--paper)}
 <div class="depts"><div class="dept"><strong>গবেষণা ও উন্নয়ন</strong><span>Research &amp; Development</span></div><div class="dept"><strong>আইটি ও গণযোগাযোগ</strong><span>IT &amp; Mass Communication</span></div><div class="dept"><strong>আন্তঃসম্পর্ক</strong><span>Interrelations</span></div><div class="dept"><strong>শিক্ষা ও কল্যাণ</strong><span>Education &amp; Welfare</span></div></div></div></section>
 <section id="contact"><div class="wrap"><div class="joinbox"><div><div class="label">Connect With SDC</div><h2>Stay Connected with SDC</h2><p>ক্লাবের কার্যক্রম, ঘোষণা ও আপডেট অনুসরণ করতে অফিসিয়াল Facebook Page-এ ভিজিট করুন।</p><div class="social"><a href="https://www.facebook.com/profile.php?id=100068807261008" rel="noopener" target="_blank">Facebook Page ↗</a></div></div>
 <div class="panel" style="box-shadow:none"><h3>Head Office</h3><p>Rajbari Sadar, Rajbari, Bangladesh</p><p style="margin-top:14px;font-size:12px">Phone, Email, WhatsApp ও অন্যান্য official contact তথ্য পাওয়া গেলে এই অংশে যুক্ত করা যাবে।</p></div></div></div></section>
-<section class="dark news-section" id="news"><div class="wrap"><div class="head"><div class="label">SDC in News</div><h2>সংবাদে সোনাকান্দর ডেভেলপমেন্ট ক্লাব</h2><p>বিভিন্ন সংবাদমাধ্যমে প্রকাশিত SDC-এর কার্যক্রম ও অর্জনের নির্বাচিত সংবাদ।</p></div><div class="news-grid"><article class="news-card"><div class="news-meta"><span class="source">The Daily Observer</span><span>১০ অক্টোবর ২০২৬</span><span class="news-verified">Published report</span></div><h3>“Youth for Equality” সংলাপে বৈষম্যহীন সমাজ গঠনে তরুণদের ভূমিকার ওপর গুরুত্ব</h3><p>রাজবাড়ীতে সোনাকান্দর ডেভেলপমেন্ট ক্লাবের আয়োজিত যুব সংলাপে লিঙ্গসমতা, পারস্পরিক সম্মান এবং বৈষম্যহীন সমাজ গঠনে তরুণদের ভূমিকা নিয়ে আলোচনা হয়। প্রতিবেদনে প্রধান অতিথি, আয়োজক ও অংশগ্রহণকারীদের বক্তব্য তুলে ধরা হয়েছে।</p><a class="news-link" href="https://observerbd.com/news/598618" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article><article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>২০ সেপ্টেম্বর ২০২৩</span><span class="news-verified">Published report</span></div><h3>রাজবাড়ীতে এসডিসি শিক্ষাবৃত্তি পেল ৭জন দরিদ্র মেধাবী শিক্ষার্থী</h3><p>লক্ষীকোলে আল্লা নেওয়াজ খায়রু উচ্চ বিদ্যালয়ের ৭ জন দরিদ্র মেধাবী শিক্ষার্থীকে এসডিসির শিক্ষাবৃত্তি প্রদানের সংবাদ।</p><a class="news-link" href="https://matrikantha.com/main/article/13947" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article><article class="news-card"><div class="news-meta"><span class="source">দেশভাবনা</span><span>২৮ সেপ্টেম্বর ২০২৪</span><span class="news-verified">Published report</span></div><h3>রাজবাড়ীতে এসডিসি শিক্ষাবৃত্তি-২০২৪ লিখিত পরীক্ষা অনুষ্ঠিত</h3><p>রাজবাড়ী সরকারি উচ্চ বিদ্যালয়ে অনুষ্ঠিত এসডিসি শিক্ষাবৃত্তি-২০২৪ লিখিত পরীক্ষায় ১০টি শিক্ষা প্রতিষ্ঠানের ১০০ জন শিক্ষার্থী অংশ নেয়।</p><a class="news-link" href="https://deshvabna.com/education/1532/" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article><article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>১০ অক্টোবর ২০২৪</span><span class="news-verified">Published report</span></div><h3>রাজবাড়ীতে মেধাবী শিক্ষার্থীদের মাঝে এসডিসি শিক্ষাবৃত্তি প্রদান</h3><p>এসডিসি শিক্ষাবৃত্তি-২০২৪-এর ১০ জন নির্বাচিত শিক্ষার্থীর মাঝে প্রথম কিস্তির বৃত্তি ও সনদ প্রদান অনুষ্ঠানের সংবাদ।</p><a class="news-link" href="https://matrikantha.com/main/article/18297" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article><article class="news-card"><div class="news-meta"><span class="source">ঢাকাপোস্ট</span><span>২৯ নভেম্বর ২০২৪</span><span class="news-verified">Published report</span></div><h3>কেমন রাজবাড়ী চাই—এসডিসির মতবিনিময় সভা</h3><p>রাজবাড়ী জেলা প্রশাসকের সম্মেলন কক্ষে যুবক ও শিশুদের অংশগ্রহণে সমৃদ্ধ রাজবাড়ী গড়ার বিষয়ে এসডিসির মতবিনিময় সভার সংবাদ।</p><a class="news-link" href="https://www.dhakapost.com/country/326066" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article><article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>২৪ আগস্ট ২০২৫</span><span class="news-verified">Published report</span></div><h3>সোনাকান্দর ডেভেলপমেন্ট ক্লাবের উদ্যোগে এসডিসি শিক্ষাবৃত্তির লিখিত পরীক্ষা অনুষ্ঠিত</h3><p>এসডিসি শিক্ষাবৃত্তি-২০২৫-এর লিখিত পরীক্ষায় ২০টি শিক্ষা প্রতিষ্ঠানের ২৬৩ জন শিক্ষার্থী অংশ নেয়; পরবর্তী ধাপে ৩০ জনকে ভাইভার জন্য নেওয়ার কথা জানানো হয়।</p><a class="news-link" href="https://matrikantha.com/main/article/21521" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article><article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>৪ সেপ্টেম্বর ২০২৫</span><span class="news-verified">Published report</span></div><h3>সোনাকান্দর ডেভেলপমেন্ট ক্লাবের উদ্যোগে এসডিসি শিক্ষাবৃত্তি প্রদান</h3><p>রাজবাড়ী জেলা শিল্পকলা একাডেমীতে এসডিসি শিক্ষাবৃত্তি-২০২৫-এর ১০ জন বিজয়ী শিক্ষার্থীর মাঝে বৃত্তি এবং আরও ২০ জনকে সনদ দেওয়ার সংবাদ।</p><a class="news-link" href="https://matrikantha.com/main/article/21634" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article></div><p class="news-note">নোট: এই অংশে শুধু অনলাইনে যাচাই করা প্রকাশিত সংবাদ থেকে তথ্য ব্যবহার করা হয়েছে।</p></div></section>
+<section class="dark news-section" id="news"><div class="wrap"><div class="head"><div class="label">SDC in News</div><h2>সংবাদে সোনাকান্দর ডেভেলপমেন্ট ক্লাব</h2><p>১০ অক্টোবর ২০২৬-এর “সমতায় তারুণ্য | Youth for Equality” যুব সংলাপ নিয়ে প্রকাশিত সংবাদ এবং SDC-এর অন্যান্য নির্বাচিত প্রতিবেদন।</p></div><div class="news-grid" id="newsGrid">
+<article class="news-card"><div class="news-meta"><span class="source">The Daily Observer</span><span>১০ অক্টোবর ২০২৬</span><span class="news-verified">Published report</span></div><h3>Youth Can Build a Discrimination-Free Society: State Minister Khoyam</h3><p>রাজবাড়ীর নান্নু টাওয়ার কনভেনশন সেন্টারে SDC আয়োজিত যুব সংলাপে সংস্কৃতিবিষয়ক প্রতিমন্ত্রী আলী নেওয়াজ মাহমুদ খৈয়ম নারী-পুরুষের সমতা, পারস্পরিক সম্মান এবং বৈষম্যহীন সমাজ গঠনে তরুণদের ভূমিকার ওপর গুরুত্ব দেন।</p><a class="news-link" href="https://observerbd.com/news/598618" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">জনতার আদালত</span><span>১০ অক্টোবর ২০২৬</span><span class="news-verified">Published report</span></div><h3>বৈষম্যহীন সমাজ গঠনে তরুণদের ভূমিকা গুরুত্বপূর্ণ: প্রতিমন্ত্রী খৈয়ম</h3><p>প্রতিবেদনে যুব সংলাপের বক্তব্য, SDC সভাপতি হুমাইয়া আক্তার রিন্থীর সভাপতিত্ব, বিশেষ অতিথিদের আলোচনা এবং তরুণদের মধ্যে সমতা ও অধিকার বিষয়ে সচেতনতা তৈরির লক্ষ্য তুলে ধরা হয়েছে।</p><a class="news-link" href="https://jonotaradalot.com/2026/10/10/102354/" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">ঢাকা ম্যাগাজিন</span><span>১০ অক্টোবর ২০২৬</span><span class="news-verified">Published report</span></div><h3>তরুণদের হাত ধরেই গড়ে উঠবে বৈষম্যহীন সমাজ: প্রতিমন্ত্রী খৈয়ম</h3><p>“সমতায় তারুণ্য: Youth for Equality” প্রকল্পের আওতায় আয়োজিত সংলাপে সামাজিক কুসংস্কার দূর করা, সমতা ও মানবিক মূল্যবোধ চর্চা এবং তরুণদের সক্রিয় অংশগ্রহণের বিষয়ে গুরুত্ব দেওয়া হয়।</p><a class="news-link" href="https://dhakamagazine.com/article/5125/" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">দৈনিক করতোয়া</span><span>১০ অক্টোবর ২০২৬</span><span class="news-verified">Published report</span></div><h3>বৈষম্যহীন সমাজ গঠনে তরুণদের এগিয়ে আসার আহ্বান প্রতিমন্ত্রীর</h3><p>রাজবাড়ীতে অনুষ্ঠিত যুব সংলাপে তরুণদের সমতা প্রতিষ্ঠা ও বৈষম্যহীন সমাজ গঠনে এগিয়ে আসার আহ্বানের খবর প্রকাশিত হয়।</p><a class="news-link" href="https://www.dailykaratoa.com/article/186889" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">কালের আলো</span><span>১০ অক্টোবর ২০২৬</span><span class="news-verified">Published report</span></div><h3>সমতা প্রতিষ্ঠায় তরুণদের সচেতনতা জরুরি: প্রতিমন্ত্রী খৈয়ম</h3><p>প্রতিবেদনটিতে নারী-পুরুষের সমতা, জেন্ডারভিত্তিক বৈষম্য কমাতে সচেতনতা, সমন্বিত উদ্যোগ এবং অনুষ্ঠানে উপস্থিত অতিথি ও অংশগ্রহণকারীদের প্রসঙ্গ তুলে ধরা হয়েছে।</p><a class="news-link" href="https://kaleralo.com/389704/2026/" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>২০ সেপ্টেম্বর ২০২৩</span><span class="news-verified">Published report</span></div><h3>রাজবাড়ীতে এসডিসি শিক্ষাবৃত্তি পেল ৭ জন দরিদ্র মেধাবী শিক্ষার্থী</h3><p>লক্ষীকোলে আল্লা নেওয়াজ খায়রু উচ্চ বিদ্যালয়ের ৭ জন দরিদ্র মেধাবী শিক্ষার্থীকে এসডিসির শিক্ষাবৃত্তি প্রদানের সংবাদ।</p><a class="news-link" href="https://matrikantha.com/main/article/13947" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">দেশভাবনা</span><span>২৮ সেপ্টেম্বর ২০২৪</span><span class="news-verified">Published report</span></div><h3>রাজবাড়ীতে এসডিসি শিক্ষাবৃত্তি-২০২৪ লিখিত পরীক্ষা অনুষ্ঠিত</h3><p>রাজবাড়ী সরকারি উচ্চ বিদ্যালয়ে অনুষ্ঠিত এসডিসি শিক্ষাবৃত্তি-২০২৪ লিখিত পরীক্ষায় ১০টি শিক্ষা প্রতিষ্ঠানের ১০০ জন শিক্ষার্থী অংশ নেয়।</p><a class="news-link" href="https://deshvabna.com/education/1532/" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>১০ অক্টোবর ২০২৪</span><span class="news-verified">Published report</span></div><h3>রাজবাড়ীতে মেধাবী শিক্ষার্থীদের মাঝে এসডিসি শিক্ষাবৃত্তি প্রদান</h3><p>এসডিসি শিক্ষাবৃত্তি-২০২৪-এর ১০ জন নির্বাচিত শিক্ষার্থীর মাঝে প্রথম কিস্তির বৃত্তি ও সনদ প্রদান অনুষ্ঠানের সংবাদ।</p><a class="news-link" href="https://matrikantha.com/main/article/18297" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">ঢাকাপোস্ট</span><span>২৯ নভেম্বর ২০২৪</span><span class="news-verified">Published report</span></div><h3>কেমন রাজবাড়ী চাই—এসডিসির মতবিনিময় সভা</h3><p>রাজবাড়ী জেলা প্রশাসকের সম্মেলন কক্ষে যুবক ও শিশুদের অংশগ্রহণে সমৃদ্ধ রাজবাড়ী গড়ার বিষয়ে এসডিসির মতবিনিময় সভার সংবাদ।</p><a class="news-link" href="https://www.dhakapost.com/country/326066" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>২৪ আগস্ট ২০২৫</span><span class="news-verified">Published report</span></div><h3>সোনাকান্দর ডেভেলপমেন্ট ক্লাবের উদ্যোগে এসডিসি শিক্ষাবৃত্তির লিখিত পরীক্ষা অনুষ্ঠিত</h3><p>এসডিসি শিক্ষাবৃত্তি-২০২৫-এর লিখিত পরীক্ষায় ২০টি শিক্ষা প্রতিষ্ঠানের ২৬৩ জন শিক্ষার্থী অংশ নেয়; পরবর্তী ধাপে ৩০ জনকে ভাইভার জন্য নেওয়ার কথা জানানো হয়।</p><a class="news-link" href="https://matrikantha.com/main/article/21521" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+<article class="news-card"><div class="news-meta"><span class="source">মাতৃকণ্ঠ</span><span>৪ সেপ্টেম্বর ২০২৫</span><span class="news-verified">Published report</span></div><h3>সোনাকান্দর ডেভেলপমেন্ট ক্লাবের উদ্যোগে এসডিসি শিক্ষাবৃত্তি প্রদান</h3><p>রাজবাড়ী জেলা শিল্পকলা একাডেমীতে এসডিসি শিক্ষাবৃত্তি-২০২৫-এর ১০ জন বিজয়ী শিক্ষার্থীর মাঝে বৃত্তি এবং আরও ২০ জনকে সনদ দেওয়ার সংবাদ।</p><a class="news-link" href="https://matrikantha.com/main/article/21634" rel="noopener" target="_blank">সম্পূর্ণ সংবাদ পড়ুন ↗</a></article>
+</div><div class="news-more-wrap"><button class="news-more-btn" id="newsMoreBtn" type="button" aria-expanded="false" aria-controls="newsGrid"><span id="newsMoreLabel">More News</span><span class="news-more-icon" id="newsMoreIcon" aria-hidden="true">＋</span></button></div><p class="news-note">নোট: প্রতিটি লিংক সংশ্লিষ্ট সংবাদমাধ্যমের মূল প্রতিবেদনে নিয়ে যাবে। ১০ অক্টোবরের প্রতিবেদনগুলো একই অনুষ্ঠানের পৃথক সংবাদ, তাই শিরোনাম ও উৎস আলাদা করে দেখানো হয়েছে।</p></div></section>
 <section class="notice-page" id="notice-page"><div class="wrap"><button class="notice-back" onclick="closeNoticePage()" type="button">← হোম পেজে ফিরে যান</button><div class="head"><div class="label">Notice</div><h2>Notices &amp; Announcements</h2><p>সোনাকান্দর ডেভেলপমেন্ট ক্লাব (SDC), রাজবাড়ীর গুরুত্বপূর্ণ নোটিশ ও বিজ্ঞপ্তি এখানে প্রকাশ করা হবে।</p></div><div class="notice-list">
 <div class="form-notice latest-notice">
 <span class="form-badge">● LATEST NOTICE</span>
@@ -255,6 +275,21 @@ body.notice-mode{background:var(--paper)}
     if(isNotice) window.scrollTo({top:0,behavior:'smooth'});
   }
   if(menu) document.querySelectorAll('.menu a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+  const newsGrid=document.getElementById('newsGrid');
+  const newsMoreBtn=document.getElementById('newsMoreBtn');
+  const newsMoreLabel=document.getElementById('newsMoreLabel');
+  const newsMoreIcon=document.getElementById('newsMoreIcon');
+  if(newsGrid&&newsMoreBtn){
+    const newsCards=newsGrid.querySelectorAll('.news-card');
+    if(newsCards.length<=4){newsMoreBtn.hidden=true;}
+    newsMoreBtn.addEventListener('click',()=>{
+      const expanded=newsGrid.classList.toggle('show-all');
+      newsMoreBtn.setAttribute('aria-expanded',String(expanded));
+      if(newsMoreLabel)newsMoreLabel.textContent=expanded?'Show Less':'More News';
+      if(newsMoreIcon)newsMoreIcon.textContent=expanded?'−':'＋';
+      if(!expanded)newsGrid.scrollIntoView({behavior:'smooth',block:'start'});
+    });
+  }
   window.addEventListener('hashchange',setNoticeMode);
   setNoticeMode();
   window.closeNoticePage=function(){location.hash='#home';};
@@ -281,4 +316,120 @@ body.notice-mode{background:var(--paper)}
 <span>Sonakandor Development Club (SDC), Rajbari</span>
 </div>
 <script>document.addEventListener("DOMContentLoaded",function(){const src=document.querySelector(".brand img")?.src;const wm=document.querySelector(".hero-watermark");if(src&&wm)wm.src=src;});</script>
+
+<!-- SDC AI Assistant: independent add-on; existing website content and behavior remain unchanged -->
+<style id="sdc-assistant-styles">
+#sdc-chat-launcher{position:fixed;right:22px;bottom:22px;z-index:99990;width:62px;height:62px;border:0;border-radius:50%;background:linear-gradient(145deg,#0b8065,#075744);color:#fff;box-shadow:0 8px 28px #062e2660;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:transform .2s,box-shadow .2s}
+#sdc-chat-launcher:hover{transform:translateY(-3px);box-shadow:0 12px 32px #062e2670}
+#sdc-chat-launcher svg{width:29px;height:29px}
+#sdc-chat-launcher .sdc-chat-dot{position:absolute;right:1px;top:1px;width:13px;height:13px;border:2px solid #fff;border-radius:50%;background:#39d98a}
+#sdc-chat-panel{position:fixed;right:22px;bottom:96px;z-index:99991;width:min(390px,calc(100vw - 28px));height:min(570px,calc(100dvh - 125px));background:#fff;border:1px solid #dce8e4;border-radius:20px;box-shadow:0 18px 65px #061f1b35;display:none;overflow:hidden;font-family:inherit;color:#172a26}
+#sdc-chat-panel.sdc-open{display:flex;flex-direction:column;animation:sdcChatIn .18s ease-out}
+@keyframes sdcChatIn{from{opacity:0;transform:translateY(10px) scale(.98)}to{opacity:1;transform:none}}
+#sdc-chat-head{padding:15px 16px;background:linear-gradient(120deg,#075744,#0b8065);color:#fff;display:flex;align-items:center;gap:11px}
+#sdc-chat-head .sdc-avatar{width:39px;height:39px;border-radius:13px;background:#ffffff20;display:grid;place-items:center;font-size:20px}
+#sdc-chat-head strong{display:block;font-size:15px;line-height:1.35}
+#sdc-chat-head small{display:block;font-size:11px;opacity:.86;margin-top:2px}
+#sdc-chat-close{margin-left:auto;border:0;background:#ffffff1c;color:white;width:32px;height:32px;border-radius:10px;font-size:22px;cursor:pointer}
+#sdc-chat-messages{flex:1;overflow:auto;padding:15px 13px;background:#f5f9f7;display:flex;flex-direction:column;gap:11px}
+.sdc-msg{max-width:88%;padding:10px 12px;border-radius:14px;font-size:13px;line-height:1.55;white-space:pre-wrap;overflow-wrap:anywhere}
+.sdc-msg.bot{align-self:flex-start;background:#fff;border:1px solid #e5eeea;border-bottom-left-radius:4px}
+.sdc-msg.user{align-self:flex-end;background:#08745b;color:#fff;border-bottom-right-radius:4px}
+.sdc-msg .sdc-source{display:block;font-size:10px;color:#668078;margin-top:6px}
+#sdc-chat-quick{padding:0 12px 9px;background:#f5f9f7;display:flex;gap:6px;overflow-x:auto}
+#sdc-chat-quick button{white-space:nowrap;border:1px solid #cfe1d9;background:#fff;color:#17634f;border-radius:18px;padding:6px 10px;font-size:11px;cursor:pointer}
+#sdc-chat-form{display:flex;gap:8px;padding:11px;border-top:1px solid #e7eeeb;background:#fff}
+#sdc-chat-input{min-width:0;flex:1;border:1px solid #d7e3de;border-radius:13px;padding:11px 12px;font:inherit;font-size:13px;outline:none}
+#sdc-chat-input:focus{border-color:#0b8065;box-shadow:0 0 0 3px #0b80651a}
+#sdc-chat-send{border:0;border-radius:12px;background:#08745b;color:white;width:43px;min-width:43px;font-size:19px;cursor:pointer}
+#sdc-chat-foot{font-size:10px;color:#82938d;text-align:center;padding:0 8px 8px;background:#fff}
+@media(max-width:480px){#sdc-chat-launcher{right:15px;bottom:16px;width:57px;height:57px}#sdc-chat-panel{right:10px;bottom:84px;width:calc(100vw - 20px);height:min(570px,calc(100dvh - 105px));border-radius:17px}}
+@media(prefers-reduced-motion:reduce){#sdc-chat-panel.sdc-open{animation:none}#sdc-chat-launcher{transition:none}}
+</style>
+<button id="sdc-chat-launcher" type="button" aria-label="Open SDC assistant" aria-controls="sdc-chat-panel" aria-expanded="false">
+<svg viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-7.5 7.5H6l-3 2v-6.5A7.5 7.5 0 1 1 20 11.5Z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M8 11h8M8 14.5h5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg><span class="sdc-chat-dot"></span>
+</button>
+<section id="sdc-chat-panel" role="dialog" aria-label="SDC website assistant" aria-modal="false">
+ <header id="sdc-chat-head"><div class="sdc-avatar">✦</div><div><strong>SDC Assistant</strong><small>Sonakandor Development Club • Here to help</small></div><button id="sdc-chat-close" type="button" aria-label="Close chat">×</button></header>
+ <div id="sdc-chat-messages" aria-live="polite"><div class="sdc-msg bot">আসসালামু আলাইকুম! 👋 SDC-এর ওয়েবসাইট সহকারী হিসেবে স্বাগতম। সংগঠন, কার্যক্রম, প্রকল্প, নেতৃত্ব, নোটিশ বা ওয়েবসাইটে প্রকাশিত তথ্য সম্পর্কে জিজ্ঞাসা করুন। বাংলা, English অথবা Banglish—যেভাবে স্বাচ্ছন্দ্য বোধ করেন সেভাবেই লিখুন।</div></div>
+ <div id="sdc-chat-quick"><button type="button">About SDC</button><button type="button">Our projects</button><button type="button">Leadership</button><button type="button">Latest notice</button></div>
+ <form id="sdc-chat-form"><input id="sdc-chat-input" type="text" autocomplete="off" placeholder="আপনার প্রশ্ন লিখুন..." aria-label="Your question" maxlength="700"/><button id="sdc-chat-send" type="submit" aria-label="Send message">➤</button></form>
+ <div id="sdc-chat-foot">উত্তর ওয়েবসাইটে বর্তমানে প্রকাশিত তথ্যের ভিত্তিতে • SDC Rajbari</div>
+</section>
+<script id="sdc-assistant-script">
+(function(){
+ 'use strict';
+ const launcher=document.getElementById('sdc-chat-launcher'),panel=document.getElementById('sdc-chat-panel');
+ const closeBtn=document.getElementById('sdc-chat-close'),form=document.getElementById('sdc-chat-form');
+ const input=document.getElementById('sdc-chat-input'),messages=document.getElementById('sdc-chat-messages');
+ if(!launcher||!panel||!form||!input||!messages)return;
+ // Optional secure AI backend: set this to your own server-side endpoint.
+ // Never put a private Gemini/OpenAI API key in this public GitHub Pages file.
+ const AI_ENDPOINT='';
+ function toggle(open){panel.classList.toggle('sdc-open',open);launcher.setAttribute('aria-expanded',String(open));if(open)setTimeout(()=>input.focus(),80);}
+ launcher.addEventListener('click',()=>toggle(!panel.classList.contains('sdc-open')));
+ closeBtn.addEventListener('click',()=>toggle(false));
+ document.addEventListener('keydown',e=>{if(e.key==='Escape')toggle(false);});
+ function addMessage(text,who,source){
+  const el=document.createElement('div');el.className='sdc-msg '+who;el.textContent=text;
+  if(source){const small=document.createElement('span');small.className='sdc-source';small.textContent=source;el.appendChild(small);}
+  messages.appendChild(el);messages.scrollTop=messages.scrollHeight;return el;
+ }
+ function norm(v){return (v||'').toLocaleLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}\s]/gu,' ').replace(/\s+/g,' ').trim();}
+ // Build the searchable knowledge base from the live page each time, so edited page text is reflected automatically.
+ function getKnowledge(){
+  const root=document.querySelector('main')||document.body;
+  const blocks=[...root.querySelectorAll('section,article,.news-card,.notice-card,.project-card,.focus-card')];
+  const items=[];
+  blocks.forEach(el=>{
+   if(el.closest('#sdc-chat-panel'))return;
+   const t=(el.innerText||'').replace(/\s+/g,' ').trim();
+   if(t.length>35)items.push({text:t.slice(0,1800),title:(el.querySelector('h1,h2,h3,h4')?.innerText||'Website information').trim()});
+  });
+  if(!items.length)items.push({title:'Website',text:(root.innerText||'').slice(0,12000)});
+  return items;
+ }
+ const stop=new Set(('the and for with from this that what where when who how are our your about tell please can you SDC club rajbari theke ki kothay kokhon kivabe ke amader amar bolo bolun jante chai somporke ache ase hobe hoy ebong ও কি কী কোথায় কোথায় কখন কবে কিভাবে কে কার আমাদের সম্পর্কে বলো বলুন জানতে চাই আছে হয় হবে এবং এই সেটা').split(/\s+/));
+ function terms(q){return norm(q).split(' ').filter(w=>w.length>1&&!stop.has(w));}
+ function findAnswer(q){
+  const qn=norm(q), ts=terms(q);
+  const data=getKnowledge().map(x=>({...x,n:norm(x.title+' '+x.text)}));
+  const ranked=data.map(x=>{
+   let score=0;ts.forEach(w=>{if(x.n.includes(w))score+=w.length>5?3:1.5;});
+   if(qn.includes('project')||qn.includes('প্রকল্প')||qn.includes('কার্যক্রম'))if(/project|প্রকল্প|কার্যক্রম/i.test(x.title+' '+x.text))score+=3;
+   if(qn.includes('lead')||qn.includes('নেতৃত্ব')||qn.includes('committee')||qn.includes('কমিটি'))if(/leadership|নেতৃত্ব|সভাপতি|সাধারণ সম্পাদক|পরিচালক/i.test(x.text))score+=5;
+   if(qn.includes('notice')||qn.includes('নোটিশ'))if(/notice|নোটিশ|বিজ্ঞপ্তি/i.test(x.title+' '+x.text))score+=5;
+   if(qn.includes('contact')||qn.includes('যোগাযোগ'))if(/contact|যোগাযোগ|facebook|phone|email/i.test(x.text))score+=4;
+   return {...x,score};
+  }).sort((a,b)=>b.score-a.score);
+  if(!ts.length||!ranked[0]||ranked[0].score<1.5)return null;
+  const best=ranked.filter(x=>x.score>=Math.max(2,ranked[0].score*.55)).slice(0,2);
+  return best.map(x=>x.title+': '+x.text).join('\n\n').slice(0,1450);
+ }
+ function languageReply(q,answer){
+  const qn=norm(q);
+  if(!answer){
+   if(/english|website|site|update|updated|update kora|আপডেট/i.test(qn))return 'Thanks for asking! I can only confirm information that is currently published on this website. I could not find a clear matching detail. Please check the relevant page or contact SDC through its official Facebook page.';
+   return 'দুঃখিত! এই প্রশ্নের নির্ভরযোগ্য উত্তর ওয়েবসাইটে প্রকাশিত তথ্যের মধ্যে খুঁজে পেলাম না। নতুন কোনো তথ্য অনুমান করে বলছি না। অনুগ্রহ করে ওয়েবসাইটের সংশ্লিষ্ট অংশ দেখুন অথবা SDC-এর অফিসিয়াল Facebook Page-এ যোগাযোগ করুন।';
+  }
+  if(/[অ-হ]/.test(q))return 'অবশ্যই! ওয়েবসাইটে প্রকাশিত তথ্য অনুযায়ী:\n\n'+answer+'\n\nআর কোনো বিষয়ে জানতে চাইলে নির্দ্বিধায় জিজ্ঞাসা করুন। 😊';
+  if(/\b(ki|kothay|kokhon|ke|kivabe|bolo|ache|ase|somporke|amader|kaj|prokolpo)\b/i.test(q))return 'অবশ্যই! Website-e currently published information onujayi:\n\n'+answer+'\n\nAro kichu jante chaile jiggesh korun. 😊';
+  return 'Of course! According to the information currently published on this website:\n\n'+answer+'\n\nFeel free to ask me anything else. 😊';
+ }
+ async function respond(q){
+  const loading=addMessage('একটু দেখছি... / One moment please…','bot');
+  try{
+   if(AI_ENDPOINT){
+    const res=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,language:'auto',page:location.href})});
+    if(!res.ok)throw new Error('Assistant service unavailable');
+    const result=await res.json();loading.remove();addMessage(result.reply||result.answer||'দুঃখিত, উত্তর পাওয়া যায়নি।','bot');return;
+   }
+   const answer=findAnswer(q);loading.remove();addMessage(languageReply(q,answer),'bot',answer?'Source: current website content':'');
+  }catch(e){loading.remove();addMessage('এই মুহূর্তে সহকারী সেবা পাওয়া যাচ্ছে না। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।','bot');}
+ }
+ form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;addMessage(q,'user');input.value='';respond(q);});
+ panel.querySelectorAll('#sdc-chat-quick button').forEach(b=>b.addEventListener('click',()=>{const q=b.textContent;addMessage(q,'user');respond(q);}));
+})();
+</script>
+
 </body></html>
