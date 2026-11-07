@@ -354,18 +354,17 @@ body.notice-mode{background:var(--paper)}
  <div id="sdc-chat-messages" aria-live="polite"><div class="sdc-msg bot">আসসালামু আলাইকুম! 👋 SDC-এর ওয়েবসাইট সহকারী হিসেবে স্বাগতম। সংগঠন, কার্যক্রম, প্রকল্প, নেতৃত্ব, নোটিশ বা ওয়েবসাইটে প্রকাশিত তথ্য সম্পর্কে জিজ্ঞাসা করুন। বাংলা, English অথবা Banglish—যেভাবে স্বাচ্ছন্দ্য বোধ করেন সেভাবেই লিখুন।</div></div>
  <div id="sdc-chat-quick"><button type="button">About SDC</button><button type="button">Our projects</button><button type="button">Leadership</button><button type="button">Latest notice</button></div>
  <form id="sdc-chat-form"><input id="sdc-chat-input" type="text" autocomplete="off" placeholder="আপনার প্রশ্ন লিখুন..." aria-label="Your question" maxlength="700"/><button id="sdc-chat-send" type="submit" aria-label="Send message">➤</button></form>
- <div id="sdc-chat-foot">উত্তর ওয়েবসাইটে বর্তমানে প্রকাশিত তথ্যের ভিত্তিতে • SDC Rajbari</div>
+ <div id="sdc-chat-foot">AI-powered assistant • বাংলা, English ও Banglish</div>
 </section>
 <script id="sdc-assistant-script">
 (function(){
  'use strict';
+ const AI_ENDPOINT='PASTE_CLOUDFLARE_WORKER_URL_HERE'; // Replace this after deploying the Worker.
  const launcher=document.getElementById('sdc-chat-launcher'),panel=document.getElementById('sdc-chat-panel');
  const closeBtn=document.getElementById('sdc-chat-close'),form=document.getElementById('sdc-chat-form');
  const input=document.getElementById('sdc-chat-input'),messages=document.getElementById('sdc-chat-messages');
  if(!launcher||!panel||!form||!input||!messages)return;
- // Optional secure AI backend: set this to your own server-side endpoint.
- // Never put a private Gemini/OpenAI API key in this public GitHub Pages file.
- const AI_ENDPOINT='';
+ const history=[];
  function toggle(open){panel.classList.toggle('sdc-open',open);launcher.setAttribute('aria-expanded',String(open));if(open)setTimeout(()=>input.focus(),80);}
  launcher.addEventListener('click',()=>toggle(!panel.classList.contains('sdc-open')));
  closeBtn.addEventListener('click',()=>toggle(false));
@@ -375,8 +374,6 @@ body.notice-mode{background:var(--paper)}
   if(source){const small=document.createElement('span');small.className='sdc-source';small.textContent=source;el.appendChild(small);}
   messages.appendChild(el);messages.scrollTop=messages.scrollHeight;return el;
  }
- function norm(v){return (v||'').toLocaleLowerCase().normalize('NFKC').replace(/[^\p{L}\p{N}\s]/gu,' ').replace(/\s+/g,' ').trim();}
- // Build the searchable knowledge base from the live page each time, so edited page text is reflected automatically.
  function getKnowledge(){
   const root=document.querySelector('main')||document.body;
   const blocks=[...root.querySelectorAll('section,article,.news-card,.notice-card,.project-card,.focus-card')];
@@ -384,48 +381,29 @@ body.notice-mode{background:var(--paper)}
   blocks.forEach(el=>{
    if(el.closest('#sdc-chat-panel'))return;
    const t=(el.innerText||'').replace(/\s+/g,' ').trim();
-   if(t.length>35)items.push({text:t.slice(0,1800),title:(el.querySelector('h1,h2,h3,h4')?.innerText||'Website information').trim()});
+   if(t.length>25)items.push({title:(el.querySelector('h1,h2,h3,h4')?.innerText||'Website information').trim(),text:t.slice(0,2200)});
   });
-  if(!items.length)items.push({title:'Website',text:(root.innerText||'').slice(0,12000)});
-  return items;
+  if(!items.length)items.push({title:'Website',text:(root.innerText||'').slice(0,14000)});
+  return items.slice(0,35);
  }
- const stop=new Set(('the and for with from this that what where when who how are our your about tell please can you SDC club rajbari theke ki kothay kokhon kivabe ke amader amar bolo bolun jante chai somporke ache ase hobe hoy ebong ও কি কী কোথায় কোথায় কখন কবে কিভাবে কে কার আমাদের সম্পর্কে বলো বলুন জানতে চাই আছে হয় হবে এবং এই সেটা').split(/\s+/));
- function terms(q){return norm(q).split(' ').filter(w=>w.length>1&&!stop.has(w));}
- function findAnswer(q){
-  const qn=norm(q), ts=terms(q);
-  const data=getKnowledge().map(x=>({...x,n:norm(x.title+' '+x.text)}));
-  const ranked=data.map(x=>{
-   let score=0;ts.forEach(w=>{if(x.n.includes(w))score+=w.length>5?3:1.5;});
-   if(qn.includes('project')||qn.includes('প্রকল্প')||qn.includes('কার্যক্রম'))if(/project|প্রকল্প|কার্যক্রম/i.test(x.title+' '+x.text))score+=3;
-   if(qn.includes('lead')||qn.includes('নেতৃত্ব')||qn.includes('committee')||qn.includes('কমিটি'))if(/leadership|নেতৃত্ব|সভাপতি|সাধারণ সম্পাদক|পরিচালক/i.test(x.text))score+=5;
-   if(qn.includes('notice')||qn.includes('নোটিশ'))if(/notice|নোটিশ|বিজ্ঞপ্তি/i.test(x.title+' '+x.text))score+=5;
-   if(qn.includes('contact')||qn.includes('যোগাযোগ'))if(/contact|যোগাযোগ|facebook|phone|email/i.test(x.text))score+=4;
-   return {...x,score};
-  }).sort((a,b)=>b.score-a.score);
-  if(!ts.length||!ranked[0]||ranked[0].score<1.5)return null;
-  const best=ranked.filter(x=>x.score>=Math.max(2,ranked[0].score*.55)).slice(0,2);
-  return best.map(x=>x.title+': '+x.text).join('\n\n').slice(0,1450);
- }
- function languageReply(q,answer){
-  const qn=norm(q);
-  if(!answer){
-   if(/english|website|site|update|updated|update kora|আপডেট/i.test(qn))return 'Thanks for asking! I can only confirm information that is currently published on this website. I could not find a clear matching detail. Please check the relevant page or contact SDC through its official Facebook page.';
-   return 'দুঃখিত! এই প্রশ্নের নির্ভরযোগ্য উত্তর ওয়েবসাইটে প্রকাশিত তথ্যের মধ্যে খুঁজে পেলাম না। নতুন কোনো তথ্য অনুমান করে বলছি না। অনুগ্রহ করে ওয়েবসাইটের সংশ্লিষ্ট অংশ দেখুন অথবা SDC-এর অফিসিয়াল Facebook Page-এ যোগাযোগ করুন।';
-  }
-  if(/[অ-হ]/.test(q))return 'অবশ্যই! ওয়েবসাইটে প্রকাশিত তথ্য অনুযায়ী:\n\n'+answer+'\n\nআর কোনো বিষয়ে জানতে চাইলে নির্দ্বিধায় জিজ্ঞাসা করুন। 😊';
-  if(/\b(ki|kothay|kokhon|ke|kivabe|bolo|ache|ase|somporke|amader|kaj|prokolpo)\b/i.test(q))return 'অবশ্যই! Website-e currently published information onujayi:\n\n'+answer+'\n\nAro kichu jante chaile jiggesh korun. 😊';
-  return 'Of course! According to the information currently published on this website:\n\n'+answer+'\n\nFeel free to ask me anything else. 😊';
- }
+ function language(q){if(/[অ-হ]/.test(q))return 'Bangla';if(/\b(ami|tumi|kemon|ki|kothay|kokhon|ache|ase|bolo|hobe|amader)\b/i.test(q))return 'Banglish';return 'English';}
  async function respond(q){
-  const loading=addMessage('একটু দেখছি... / One moment please…','bot');
+  const loading=addMessage('একটু দেখছি... / Thinking…','bot');
   try{
-   if(AI_ENDPOINT){
-    const res=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,language:'auto',page:location.href})});
-    if(!res.ok)throw new Error('Assistant service unavailable');
-    const result=await res.json();loading.remove();addMessage(result.reply||result.answer||'দুঃখিত, উত্তর পাওয়া যায়নি।','bot');return;
-   }
-   const answer=findAnswer(q);loading.remove();addMessage(languageReply(q,answer),'bot',answer?'Source: current website content':'');
-  }catch(e){loading.remove();addMessage('এই মুহূর্তে সহকারী সেবা পাওয়া যাচ্ছে না। অনুগ্রহ করে কিছুক্ষণ পর আবার চেষ্টা করুন।','bot');}
+   if(!AI_ENDPOINT||AI_ENDPOINT.includes('PASTE_CLOUDFLARE'))throw new Error('SETUP_REQUIRED');
+   const res=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,language:language(q),history:history.slice(-8),knowledge:getKnowledge(),pageTitle:document.title,pageUrl:location.href})});
+   const data=await res.json().catch(()=>({}));
+   if(!res.ok)throw new Error(data.error||'REQUEST_FAILED');
+   const reply=String(data.reply||'').trim();if(!reply)throw new Error('EMPTY_REPLY');
+   loading.remove();addMessage(reply,'bot','AI assistant • SDC website information');
+   history.push({role:'user',content:q},{role:'assistant',content:reply});if(history.length>12)history.splice(0,history.length-12);
+  }catch(err){
+   loading.remove();
+   const msg=err.message==='SETUP_REQUIRED'
+    ?'AI assistant এখনো সংযুক্ত করা হয়নি। GitHub-এর পাশাপাশি Cloudflare Worker deploy করে index.html-এ Worker URL বসাতে হবে। README-GITHUB.md ফাইলে ধাপগুলো দেওয়া আছে।'
+    :'দুঃখিত, এই মুহূর্তে AI সহকারীর সঙ্গে সংযোগ করা যাচ্ছে না। কিছুক্ষণ পর আবার চেষ্টা করুন।';
+   addMessage(msg,'bot');
+  }
  }
  form.addEventListener('submit',e=>{e.preventDefault();const q=input.value.trim();if(!q)return;addMessage(q,'user');input.value='';respond(q);});
  panel.querySelectorAll('#sdc-chat-quick button').forEach(b=>b.addEventListener('click',()=>{const q=b.textContent;addMessage(q,'user');respond(q);}));
