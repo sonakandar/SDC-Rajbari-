@@ -359,7 +359,7 @@ body.notice-mode{background:var(--paper)}
 <script id="sdc-assistant-script">
 (function(){
  'use strict';
- const AI_ENDPOINT='PASTE_CLOUDFLARE_WORKER_URL_HERE'; // Replace this after deploying the Worker.
+ const AI_ENDPOINT='https://sdc-gemini-assistant.shonmysarker54.workers.dev'; // Cloudflare Worker for Gemini AI.
  const launcher=document.getElementById('sdc-chat-launcher'),panel=document.getElementById('sdc-chat-panel');
  const closeBtn=document.getElementById('sdc-chat-close'),form=document.getElementById('sdc-chat-form');
  const input=document.getElementById('sdc-chat-input'),messages=document.getElementById('sdc-chat-messages');
@@ -391,7 +391,7 @@ body.notice-mode{background:var(--paper)}
   const loading=addMessage('একটু দেখছি... / Thinking…','bot');
   try{
    if(!AI_ENDPOINT||AI_ENDPOINT.includes('PASTE_CLOUDFLARE'))throw new Error('SETUP_REQUIRED');
-   const res=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,language:language(q),history:history.slice(-8),knowledge:getKnowledge(),pageTitle:document.title,pageUrl:location.href})});
+   const res=await fetch(AI_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,language:language(q),websiteInfo:getKnowledge().map(item=>'['+item.title+'] '+item.text).join('\n\n'),pageTitle:document.title,page:location.href})});
    const data=await res.json().catch(()=>({}));
    if(!res.ok)throw new Error(data.error||'REQUEST_FAILED');
    const reply=String(data.reply||'').trim();if(!reply)throw new Error('EMPTY_REPLY');
